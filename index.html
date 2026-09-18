@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EYA FR | VALORANT PS5 — Règlement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rampart+One&family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0407;
+    --bg-2: #150609;
+    --panel: #1a0a0f;
+    --panel-line: rgba(255,90,120,0.22);
+    --crimson: #c8123a;
+    --crimson-bright: #ff2d55;
+    --pink: #ff7fa8;
+    --gold: #f2b544;
+    --ink: #f6e9e6;
+    --ink-dim: #d8b9bd;
+    --ink-faint: #9c7378;
+    --shadow-glow: 0 0 24px rgba(255,45,85,0.35);
+  }
+  :root:not([data-theme="light"]){ color-scheme: dark; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #0a0407;
+    }
+  }
+  :root[data-theme="dark"]{ --bg:#0a0407; }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(200,18,58,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 85% 15%, rgba(242,181,68,0.10), transparent 55%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* floating petals */
+  .petals{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .petal{
+    position:absolute; top:-5%; font-size:14px; opacity:0.55;
+    animation: fall linear infinite;
+    filter: drop-shadow(0 0 4px rgba(255,127,168,0.5));
+  }
+  @keyframes fall{
+    0%{ transform: translateY(-10vh) translateX(0) rotate(0deg); }
+    100%{ transform: translateY(110vh) translateX(40px) rotate(340deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .petal{ animation: none; display:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 24px; position:relative; z-index:1; }
+
+  /* HERO */
+  header.hero{
+    position:relative;
+    padding: 88px 24px 70px;
+    text-align:center;
+    border-bottom: 1px solid var(--panel-line);
+  }
+  .lantern-row{
+    display:flex; justify-content:center; gap: 18px; margin-bottom: 22px; opacity:0.9;
+  }
+  .lantern-row svg{ width:26px; height:34px; }
+
+  .hero h1{
+    font-family:"Rampart One", cursive;
+    font-size: clamp(3.2rem, 11vw, 6.4rem);
+    margin: 0;
+    color: var(--crimson-bright);
+    letter-spacing: 2px;
+    text-shadow:
+      0 0 12px rgba(255,45,85,0.85),
+      0 0 40px rgba(255,45,85,0.45),
+      0 0 90px rgba(200,18,58,0.35);
+    line-height: 1;
+  }
+  .hero .sub{
+    margin-top: 14px;
+    font-size: 0.82rem;
+    letter-spacing: 6px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .hero .url{
+    display:inline-block; margin-top: 26px;
+    font-family:"Rampart One", cursive;
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+    color: var(--ink);
+    background: linear-gradient(180deg, rgba(200,18,58,0.18), rgba(200,18,58,0.05));
+    border: 1px solid rgba(255,90,120,0.4);
+    padding: 10px 22px;
+    border-radius: 2px;
+  }
+  .hero p.tag{
+    max-width: 460px; margin: 24px auto 0;
+    color: var(--ink-dim); font-size: 0.98rem;
+  }
+
+  /* torii divider */
+  .torii{ display:flex; justify-content:center; margin: 54px 0 30px; }
+  .torii svg{ width: 120px; height: 60px; opacity:0.75; }
+
+  section.part{ padding: 10px 0 60px; }
+  .part-head{ text-align:center; margin-bottom: 40px; }
+  .part-head .eyebrow{
+    color: var(--gold); font-size: 0.78rem; letter-spacing: 4px; font-weight:600;
+  }
+  .part-head h2{
+    font-family:"Rampart One", cursive;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    color: var(--ink);
+    margin: 10px 0 0;
+    text-shadow: 0 0 20px rgba(255,45,85,0.35);
+  }
+  .part-head .accent{ color: var(--crimson-bright); }
+
+  .rule{
+    display:grid;
+    grid-template-columns: 56px 1fr;
+    gap: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border: 1px solid var(--panel-line);
+    border-left: 3px solid var(--crimson);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .rule .num{
+    font-family:"Rampart One", cursive;
+    font-size: 1.7rem;
+    color: var(--crimson-bright);
+    opacity: 0.85;
+    line-height: 1;
+  }
+  .rule h3{
+    margin: 2px 0 6px;
+    font-size: 1.02rem;
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .rule p, .rule ul{
+    margin: 0; color: var(--ink-dim); font-size: 0.93rem;
+  }
+  .rule ul{ padding-left: 18px; }
+  .rule li{ margin: 4px 0; }
+  .rule a{ color: var(--pink); text-decoration: underline; text-underline-offset: 3px; }
+
+  .format-box{
+    margin-top: 10px;
+    background: rgba(242,181,68,0.06);
+    border: 1px dashed rgba(242,181,68,0.4);
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .format-box code{
+    background: rgba(255,255,255,0.06);
+    padding: 2px 7px;
+    border-radius: 3px;
+    color: var(--gold);
+    font-family: "Noto Sans JP", monospace;
+    font-size: 0.85rem;
+  }
+  .format-box .line{ margin: 6px 0; }
+
+  footer{
+    text-align:center;
+    padding: 50px 24px 70px;
+    border-top: 1px solid var(--panel-line);
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+  footer .fname{
+    font-family:"Rampart One", cursive;
+    color: var(--crimson-bright);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    display:block;
+    margin-bottom: 8px;
+    text-shadow: 0 0 14px rgba(255,45,85,0.5);
+  }
+
+  @media (max-width: 560px){
+    .rule{ grid-template-columns: 40px 1fr; padding: 16px; }
+    .rule .num{ font-size: 1.3rem; }
+    .hero{ padding: 64px 18px 50px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="petals" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="lantern-row" aria-hidden="true">
+    <svg viewBox="0 0 24 34" fill="none"><ellipse cx="12" cy="16" rx="10" ry="12" fill="#f2b544" opacity="0.85"/><rect x="10" y="2" width="4" height="5" fill="#c8123a"/><rect x="9" y="27" width="6" height="4" fill="#c8123a"/><line x1="12" y1="6" x2="12" y2="27" stroke="#7a0f22" stroke-width="1"/></svg>
+    <svg viewBox="0 0 24 34" fill="none"><ellipse cx="12" cy="16" rx="10" ry="12" fill="#ff2d55" opacity="0.85"/><rect x="10" y="2" width="4" height="5" fill="#c8123a"/><rect x="9" y="27" width="6" height="4" fill="#c8123a"/><line x1="12" y1="6" x2="12" y2="27" stroke="#7a0f22" stroke-width="1"/></svg>
+    <svg viewBox="0 0 24 34" fill="none"><ellipse cx="12" cy="16" rx="10" ry="12" fill="#f2b544" opacity="0.85"/><rect x="10" y="2" width="4" height="5" fill="#c8123a"/><rect x="9" y="27" width="6" height="4" fill="#c8123a"/><line x1="12" y1="6" x2="12" y2="27" stroke="#7a0f22" stroke-width="1"/></svg>
+  </div>
+
+  <h1>EYA</h1>
+  <div class="sub">FR · VALORANT · PS5</div>
+  <div class="url">DISCORD.GG/EYA</div>
+  <p class="tag">Règlement officiel du serveur — à lire avant de participer aux salons et de chercher des partenaires.</p>
+</header>
+
+<main class="wrap">
+
+  <div class="torii" aria-hidden="true">
+    <svg viewBox="0 0 120 60" fill="none">
+      <rect x="8" y="10" width="104" height="6" rx="1" fill="#c8123a"/>
+      <rect x="4" y="20" width="112" height="4" rx="1" fill="#f2b544"/>
+      <rect x="20" y="16" width="8" height="40" fill="#c8123a"/>
+      <rect x="92" y="16" width="8" height="40" fill="#c8123a"/>
+    </svg>
+  </div>
+
+  <section class="part" id="general">
+    <div class="part-head">
+      <div class="eyebrow">PARTIE I</div>
+      <h2>Règlement <span class="accent">Général</span></h2>
+    </div>
+
+    <div class="rule">
+      <div class="num">01</div>
+      <div>
+        <h3>Respect et courtoisie</h3>
+        <p>Insultes, harcèlement, propos racistes, sexistes, homophobes ou discriminatoires sont interdits. On respecte tout le monde, peu importe l'âge, l'origine ou le niveau de jeu.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">02</div>
+      <div>
+        <h3>Pas de spam / flood</h3>
+        <p>Pas de spam de messages, d'émojis, de mentions (@everyone, @here) ou de liens sans autorisation.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">03</div>
+      <div>
+        <h3>Contenu interdit</h3>
+        <p>Pas de contenu NSFW, choquant, violent ou illégal. Pas de pub pour d'autres serveurs Discord sans accord d'un modérateur.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">04</div>
+      <div>
+        <h3>Pseudo et photo de profil</h3>
+        <p>Pseudo lisible et non offensant. Pas de pub, de liens ou de contenu inapproprié dans le pseudo ou l'avatar.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">05</div>
+      <div>
+        <h3>Salons</h3>
+        <p>Chaque salon a un thème précis (chat général, recherche de partenaires, support, etc.). Merci de respecter le sujet de chaque salon.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">06</div>
+      <div>
+        <h3>Vocaux</h3>
+        <p>Pas de son dérangeant (musique forte, micro qui crache, soundboard abusif). Respect du micro des autres.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">07</div>
+      <div>
+        <h3>Modération</h3>
+        <p>Les décisions du staff sont à respecter. Un désaccord avec une sanction se règle en MP avec un modérateur, jamais en public.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">08</div>
+      <div>
+        <h3>Règlement Discord</h3>
+        <p>En rejoignant EYA FR | VALORANT PS5, tu acceptes aussi les <a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions Générales</a> et les <a href="https://discord.com/guidelines" target="_blank" rel="noopener">Règles de la plateforme Discord</a>. Tout comportement contraire aux règles Discord (contenu illégal, doxx, raid, etc.) entraînera un bannissement immédiat.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">09</div>
+      <div>
+        <h3>Sanctions</h3>
+        <p>Avertissement → Mute → Kick → Ban, selon la gravité. Certaines infractions graves (menaces, doxxing, contenu illégal) entraînent un ban direct.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="torii" aria-hidden="true">
+    <svg viewBox="0 0 120 60" fill="none">
+      <rect x="8" y="10" width="104" height="6" rx="1" fill="#c8123a"/>
+      <rect x="4" y="20" width="112" height="4" rx="1" fill="#f2b544"/>
+      <rect x="20" y="16" width="8" height="40" fill="#c8123a"/>
+      <rect x="92" y="16" width="8" height="40" fill="#c8123a"/>
+    </svg>
+  </div>
+
+  <section class="part" id="rdp">
+    <div class="part-head">
+      <div class="eyebrow">PARTIE II</div>
+      <h2>RDP <span class="accent">Recherche de Partenaire</span></h2>
+    </div>
+
+    <div class="rule">
+      <div class="num">01</div>
+      <div>
+        <h3>Objectif du salon RDP</h3>
+        <p>Ce salon sert à trouver des partenaires fiables pour jouer sur PS5. On veut une communauté saine où les joueurs peuvent se faire confiance.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">02</div>
+      <div>
+        <h3>Comment poster une recherche</h3>
+        <ul>
+          <li>Allez dans le channel de votre rang (Or, Platine, etc.)</li>
+          <li>Indiquez le format de votre recherche</li>
+          <li>Terminez par votre identifiant</li>
+        </ul>
+        <div class="format-box">
+          <div class="line">→ <code>cherche (last)</code> / <code>(2 joueurs)</code> / <code>(3 joueurs)</code> / <code>(4 joueurs)</code> / <code>je suis last</code></div>
+          <div class="line">→ <code>Riot ID : Exemple#9999</code> ou <code>PSN : Exemple999</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">03</div>
+      <div>
+        <h3>Comportement en jeu</h3>
+        <ul>
+          <li>Pas de toxicité, pas d'insultes envers coéquipiers ou adversaires.</li>
+          <li>Pas de griefing, pas de throw volontaire, pas d'AFK abusif.</li>
+          <li>Pas de triche, exploit de bug ou logiciel tiers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">04</div>
+      <div>
+        <h3>Communication</h3>
+        <p>Micro respectueux, pas de cris ni de propos dégradants pendant les parties. En cas de désaccord en jeu, on règle ça calmement, sans agressivité.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">05</div>
+      <div>
+        <h3>Signalement</h3>
+        <p>Un partenaire toxique, tricheur ou malhonnête ? Signale-le à un modérateur avec une preuve (capture/clip) plutôt que de régler ça publiquement.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="num">06</div>
+      <div>
+        <h3>Tournois et scrims internes</h3>
+        <p>Si le serveur organise des tournois ou scrims, les inscriptions et règles spécifiques seront annoncées à part, mais ce règlement général reste valable.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="fname">EYA FR | VALORANT PS5</span>
+  discord.gg/eya — merci de respecter ce règlement pour garder une communauté saine.
+</footer>
+
+<script>
+  // decorative petals
+  (function(){
+    var container = document.querySelector('.petals');
+    if(!container) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce) return;
+    var symbols = ['🌸','🏮','⚔️'];
+    var count = window.innerWidth < 600 ? 10 : 18;
+    for(var i=0;i<count;i++){
+      var el = document.createElement('div');
+      el.className = 'petal';
+      el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+      el.style.left = (Math.random()*100) + 'vw';
+      el.style.fontSize = (10 + Math.random()*14) + 'px';
+      el.style.animationDuration = (14 + Math.random()*16) + 's';
+      el.style.animationDelay = (Math.random()*-20) + 's';
+      el.style.opacity = 0.25 + Math.random()*0.4;
+      container.appendChild(el);
+    }
+  })();
+</script>
+
+</body>
+</html>
